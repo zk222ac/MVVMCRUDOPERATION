@@ -1,0 +1,137 @@
+﻿<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MVVMCRUDOperation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ViewModel="using:MVVMCRUDOperation.ViewModel"
+    x:Class="MVVMCRUDOperation.View.MainPage"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.DataContext>
+            <ViewModel:StudentVm/>
+        </Grid.DataContext>
+
+        <ListView HorizontalAlignment="Left" Height="500" Margin="10,35,0,0" 
+                  VerticalAlignment="Top" Width="400" 
+                  ItemsSource="{Binding ListStudents }"
+                  SelectedItem="{Binding SelectedItemStudent, Mode=TwoWay}"
+                  Background="Aqua">
+            <ListView.ItemTemplate>
+                <DataTemplate  >
+                    <StackPanel >
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="{Binding ImageUrl}"/>
+                            <TextBlock Text="{Binding Name}" FontWeight="Bold" />
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <!-- Inner Grid has one column and three rows -->
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="100"/>
+            </Grid.RowDefinitions>
+            <!-- Properties (Details) -->
+            <StackPanel Grid.Row="0" Grid.Column="0" Background="AntiqueWhite">
+                <TextBlock Text="Create New student profile :" FontWeight="Bold" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock  Text="Name:"/>
+                    <TextBox    Text="{Binding AddStudent.Name, Mode=TwoWay}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock  Text="DOB:"/>
+                    <TextBox    Text="{Binding AddStudent.Dob, Mode=TwoWay}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock  Text="Country:"/>
+                    <TextBox    Text="{Binding AddStudent.Country, Mode=TwoWay}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock  Text="City:"/>
+                    <TextBox    Text="{Binding AddStudent.City, Mode=TwoWay}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock  Text="Zip Code:"/>
+                    <TextBox    Text="{Binding AddStudent.ZipCode, Mode=TwoWay}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock  Text="CPR No:"/>
+                    <TextBox    Text="{Binding AddStudent.Cpr, Mode=TwoWay}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock  Text="Image Url:"/>
+                    <TextBox    Text="{Binding AddStudent.ImageUrl, Mode=TwoWay}" />
+                    <TextBlock  Text=" Write only here image name such as ann,benny,carol,daniel,eliza"/>
+                </StackPanel>
+                <!--Display selected items-->
+                <StackPanel  Background="BurlyWood">
+                    <TextBlock Text="Display Selected Items here of particular student and also update respective student :" FontWeight="Bold" />
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Country:" FontWeight="Bold"/>
+                        <TextBox Text="{Binding SelectedItemStudent.Country, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="City:" FontWeight="Bold"/>
+                        <TextBox Text="{Binding SelectedItemStudent.City, Mode=TwoWay}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Cpr:" FontWeight="Bold"/>
+                        <TextBox Text="{Binding SelectedItemStudent.Cpr, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="DOB:" FontWeight="Bold"/>
+                        <TextBox Text="{Binding SelectedItemStudent.Dob, Mode=TwoWay}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"  >
+                        <TextBlock Text="Image:" FontWeight="Bold"/>
+                        <Image Source="{Binding SelectedItemStudent.ImageUrl, Mode=TwoWay}" Width="62" VerticalAlignment="Center" />
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+
+            <!-- Buttons (Action) -->
+            <StackPanel Grid.Row="1" Grid.Column="0"
+                        Orientation="Horizontal" BorderBrush="Black" BorderThickness="2,2,2,0">
+
+                <!--Create button-->
+                <Button Content="Create" 
+                        Command="{Binding AddStudentCommand}"/>
+
+
+                <!--Update button-->
+                <Button Content="Update" 
+                        Command="{Binding UpdateStudentCommand}"/>
+
+                <!--Delete button-->
+                <Button Content="Delete" 
+                        Command="{Binding DeleteStudentCommand}"/>
+                <!--Refresh button-->
+                <Button Content="Refresh List" 
+                        Command="{Binding RefreshStudentCommand }"/>
+
+            </StackPanel>
+
+            <!-- Page Navigation  -->
+            <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal" BorderBrush="Black" BorderThickness="2">
+
+                <Button Content="Go to Next Page1" 
+                        Command="{Binding GoPage1Command}"/>
+                
+            </StackPanel>
+
+
+        </Grid>
+
+    </Grid>
+</Page>
