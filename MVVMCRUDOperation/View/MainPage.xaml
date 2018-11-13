@@ -29,7 +29,7 @@
                     <StackPanel >
                         <StackPanel Orientation="Horizontal">
                             <Image Source="{Binding ImageUrl}"/>
-                            <TextBlock Text="{Binding Name}" FontWeight="Bold" />
+                            <TextBlock Text="{Binding Name}" FontWeight="Bold"  />
                         </StackPanel>
                     </StackPanel>
                 </DataTemplate>
@@ -111,7 +111,7 @@
 
                 <!--Update button-->
                 <Button Content="Update" 
-                        Command="{Binding UpdateStudentCommand}"/>
+                        Command="{Binding UpdateStudentCommand}" />
 
                 <!--Delete button-->
                 <Button Content="Delete" 

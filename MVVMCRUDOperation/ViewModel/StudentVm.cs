@@ -75,6 +75,7 @@ namespace MVVMCRUDOperation.ViewModel
             UserSingleton = Singleton.GetInstance();
         }
 
+        // Command Delegates Methods
         public void DoAddStudent()
         {
             // add the name of image in URL path
@@ -84,10 +85,21 @@ namespace MVVMCRUDOperation.ViewModel
         }
         public void DoUpdateStudent()
         {
-            ListStudents = new ObservableCollection<Student>()
+           foreach (var lis in ListStudents)
             {
-                new Student(SelectedItemStudent.Id, SelectedItemStudent.Name,SelectedItemStudent.Country,SelectedItemStudent.Dob,SelectedItemStudent.City,SelectedItemStudent.ZipCode,SelectedItemStudent.Cpr,SelectedItemStudent.ImageUrl)
-            };
+                if (lis.Id == SelectedItemStudent.Id)
+                {
+                    lis.Name = SelectedItemStudent.Name;
+                    lis.City = SelectedItemStudent.City;
+                    lis.Cpr = SelectedItemStudent.Cpr;
+                    lis.Dob = SelectedItemStudent.Dob;
+                    lis.ImageUrl = SelectedItemStudent.ImageUrl;
+                    lis.ZipCode = SelectedItemStudent.ZipCode;
+                    lis.Country = SelectedItemStudent.ZipCode;
+                }
+              
+            }
+            
         }
         public void DoDeleteStudent()
         {

@@ -13,5 +13,7 @@ namespace MVVMCRUDOperation.View
         {
             this.InitializeComponent();
         }
+
+       
     }
 }
